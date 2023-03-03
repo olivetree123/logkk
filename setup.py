@@ -11,8 +11,8 @@ setuptools.setup(
     description="日志组件",  # 模块简介
     long_description=long_description,  # 模块详细介绍
     long_description_content_type="text/markdown",  # 模块详细介绍格式
-    url="https://github.com/olivetree/logv",  # 模块github地址
-    packages=["logv"],  # 自动找到项目中导入的模块
+    url="https://github.com/olivetree/logkk",  # 模块github地址
+    packages=["logkk"],  # 自动找到项目中导入的模块
     # 模块相关的元数据（更多的描述）
     classifiers=[
         "Programming Language :: Python :: 3",
