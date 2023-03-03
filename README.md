@@ -21,9 +21,10 @@ logger.warn("this is a warn log")
 ```
 
 ### 使用文件记录日志：
+
 ```python
 from logkk import LogManager, Level
-from logkk.handler import FileHandler
+from logkk.handlers import FileHandler
 
 fmt = "[{datetime}] [{level}] [{name}] {message}"
 handler = FileHandler(filepath="/var/log/demo.log")

@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf8") as fh:
 
 setuptools.setup(
     name="logkk",  # 模块名称
-    version="0.2.0",  # 当前版本
+    version="0.3.0",  # 当前版本
     author="olivetree",  # 作者
     author_email="olivetree123@163.com",  # 作者邮箱
     description="日志组件",  # 模块简介

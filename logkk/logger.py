@@ -3,7 +3,7 @@ from typing import List
 from datetime import datetime
 
 from logkk.level import Level
-from logkk.handler import Handler, StreamHandler
+from logkk.handlers import Handler, StreamHandler
 
 
 class Logger(object):
@@ -42,9 +42,9 @@ class Logger(object):
 
     @staticmethod
     def _get_message(*args, **kwargs):
-        message = " ".join(args) + " "
+        message = " ".join([str(arg) for arg in args])
         for key, val in kwargs.items():
-            message += f"{key}={val} "
+            message += f" {key}={val}"
         return message
 
     def _write(self, level, *args, **kwargs):

@@ -1,7 +1,7 @@
 import threading
 
 from logkk import LogManager, Level
-from logkk.handler import FileHandler
+from logkk.handlers import FileHandler
 
 fmt = "[{datetime}] [{level}] [{name}] {message}"
 handler = FileHandler(filepath="demo.log")
