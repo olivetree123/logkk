@@ -2,8 +2,8 @@ import re
 from typing import List
 from datetime import datetime
 
-from level import Level
-from handler import Handler, StreamHandler
+from logkk.level import Level
+from logkk.handler import Handler, StreamHandler
 
 
 class Logger(object):

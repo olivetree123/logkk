@@ -1,8 +1,5 @@
-import requests
 import threading
 from abc import ABC
-
-from .errors import HttpHandlerError
 
 file_lock = threading.Lock()
 stream_lock = threading.Lock()
@@ -38,21 +35,3 @@ class FileHandler(Handler):
 
     def close(self):
         self.file_obj.close()
-
-
-import aiohttp
-
-
-class HttpHandler(Handler):
-
-    def __init__(self, url):
-        self.url = url
-        self.client = aiohttp.ClientSession()
-
-    def write(self, content):
-        # TODO: 如何做到异步发送
-        params = {"log": content}
-        self.client.post(self.url, json=params)
-        # r = requests.post(self.url, params)
-        # if not r.ok:
-        #     raise HttpHandlerError(r)

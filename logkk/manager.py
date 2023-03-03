@@ -1,6 +1,6 @@
-from level import Level
-from logger import Logger
-from handler import Handler
+from logkk.level import Level
+from logkk.logger import Logger
+from logkk.handler import Handler
 
 DEFAULT_FORMAT = "[{datetime}] [{level}] [{name}] {message}"
 
