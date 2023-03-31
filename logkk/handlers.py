@@ -32,6 +32,7 @@ class FileHandler(Handler):
                                      mode="a+",
                                      encoding=self.encoding)
             self.file_obj.write(content + "\n")
+            self.file_obj.flush()
 
     def close(self):
         self.file_obj.close()
