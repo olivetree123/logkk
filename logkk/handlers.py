@@ -15,7 +15,7 @@ class StreamHandler(Handler):
 
     def write(self, content):
         with stream_lock:
-            print(content)
+            print(content, flush=True)
 
 
 class FileHandler(Handler):
