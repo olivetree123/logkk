@@ -13,12 +13,10 @@ class Logger(object):
 
     def __init__(self,
                  module_name,
-                 function_name="",
                  level=Level.INFO,
                  fmt=None,
                  handlers=None):
         self.module_name = module_name
-        self.function_name = function_name
         self.level = level
         self.fmt = fmt
         self.handlers: List[Handler] = handlers if handlers else []
@@ -42,11 +40,6 @@ class Logger(object):
 
     def _get_module_name(self):
         return self.module_name
-
-    def _get_function_name(self):
-        if not self.function_name:
-            return ""
-        return self.function_name
 
     def _get_datetime(self):
         return datetime.now().strftime(self._datetime_fmt)
@@ -86,11 +79,9 @@ class Logger(object):
             return
         self._write("error", *args, **kwargs)
 
-    def new(self, module_name=None, function_name=None):
+    def new(self, module_name=None):
         module_name = module_name if module_name else self.module_name
-        function_name = function_name if function_name else self.function_name
         return Logger(module_name=module_name,
-                      function_name=function_name,
                       level=self.level,
                       fmt=self.fmt,
                       handlers=self.handlers)

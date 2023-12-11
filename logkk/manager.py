@@ -2,7 +2,7 @@ from logkk.level import Level
 from logkk.logger import Logger
 from logkk.handlers import Handler
 
-DEFAULT_FORMAT = "[{datetime}] [{level}] [{module_name}] [{function_name}] {message}"
+DEFAULT_FORMAT = "[{datetime}] [{level}] [{name}] {message}"
 
 
 class LogManager(object):
@@ -27,14 +27,12 @@ class LogManager(object):
     def add_handler(self, handler: Handler):
         self.handlers.append(handler)
 
-    def get_logger(self, module_name=None, function_name=None) -> Logger:
+    def get_logger(self, name) -> Logger:
         """
-        :param module_name: 模块名称或者文件名称
-        :param function_name: 函数名称
+        :param name: 模块名称或者文件名称
         :return: Logger对象
         """
-        return Logger(module_name=module_name or self.name,
-                      function_name=function_name,
+        return Logger(module_name=name or self.name,
                       level=self.level,
                       fmt=self.fmt,
                       handlers=self.handlers)
@@ -56,6 +54,6 @@ if __name__ == "__main__":
     log_manager = LogManager()
     log_manager.info("this is a info log")
     log_manager.warn("this is a warn log")
-    logger = log_manager.get_logger(module_name="main")
+    logger = log_manager.get_logger(name="main")
     logger.info("this is a info log")
     logger.warn("this is a warn log")

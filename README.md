@@ -34,6 +34,38 @@ logger.info("this is a info log")
 logger.warn("this is a warn log")
 ```
 
+### 作为函数装饰器使用
+给每个函数添加装饰器，打印函数的参数和返回值，在程序调试阶段是非常好用的。
+```python
+def log_required(f):
+
+    def func(f2):
+
+        @wraps(f2)
+        def decorated(request, *args, **kwargs):
+            name = f"{f.__module__}:{f.__name__}"
+            logger = log.get_logger(name=name)
+            logger.info(f"{request.method} {request.path}")
+            logger.info("params=", request.body)
+            setattr(request, "logger", logger)
+            r = f(request, *args, **kwargs)
+            if isinstance(r, BaseResponse):
+                logger.info("response=", r.result)
+            else:
+                logger.info("response=", r)
+            return r
+
+        return decorated
+
+    return func(f)
+
+
+@log_required
+def UpdateMyInfoHandler(request: HttpRequest):
+    # ...
+    return {"code": 0, "message":"OK"}
+```
+
 ### 技术方案说明
 写日志文件主要有两种方式：
 1. 每次写日志时打开文件，写完后关闭文件；
